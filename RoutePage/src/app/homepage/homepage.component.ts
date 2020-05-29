@@ -70,17 +70,17 @@ export class HomepageComponent implements OnInit {
 
     deleteByForm() {
         if(this.deleteForm.valid) {
-            // if(this.deleteForm.value in this.service.getAllUsers()) {
-            //     foundUser = 
-            //     this.service.deleteUser()
-            // }
-            console.log(this.deleteForm.value)
+            let formValues = this.deleteForm.value
+            let foundUser = this.users.filter(({password}) => password == formValues.password)
+            // let deleteUser: User = foundUser // how do I get my Array selection down to a single instance of User??
+            // this.service.deleteUser(deleteUser)
+            console.log(foundUser)
         }
     }
 
     deleteWhole() {
-        this.service.deleteUser(this.user);
-        console.log(this.user);
+        
+        
     }
 
     edit() {
