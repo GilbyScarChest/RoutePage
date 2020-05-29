@@ -1,0 +1,19 @@
+<nav class="navbar navbar-dark bg-primary m-0 w-100">
+    <div class="container-fluid w-100">
+        <span class="navbar-brand">App</span>
+        Hello, Welcome To Router Practice 
+        <small class="navbar-text custom-center">Here we'll try out some basic ways to switch between views and components.</small> 
+        <span class="nav-item ml-auto">It'll be fun!</span>
+    </div>
+</nav>
+
+<div class="row w-100">
+    <div class="col-md-1 bg-primary vh-100 m-0 p-0 w-100">
+        <div class="route-btn p-0 m-0 d-flex justify-content-center"><a routerLink="/" class="p-0 m-0" style="color: white;">Forms/Lists</a></div>
+        <div class="route-btn p-0 m-0 d-flex justify-content-center"><a routerLink="/view-one" class="p-0 m-0" style="color: white;">Inputs/Outputs</a></div>
+    </div>
+    <div class="col-md-11 m-0 pr-0">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

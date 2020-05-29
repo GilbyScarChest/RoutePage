@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="m-0">User List</h3>
+        <small class="mt-0">{{ users?.length || 0 }} Users</small>
+        <hr>
+
+        <ul *ngFor="let user of users" style="display: block; position: relative;" class="container-fluid">
+            <li style="display: inline;">
+                - {{ user.username }}<br><small>{{ user.email }}</small>
+            </li>
+            <button (click)="edit()" type="button" class="bg-warning" style="position:absolute; right: 75px;">Edit</button>
+            <button (click)="deleteWhole()" type="button" class="bg-danger" style="position:absolute; right: 0px; color: white;">Delete</button>
+            <hr>
+        </ul>
+    </div>
+    <div class="col-md-3">
+
+        <!-- Email: <input type="text" [formControl]="email">
+
+        {{ email.value }} -->
+
+        <h3 class="">Enter New User</h3>
+        <form 
+            [formGroup]="form"
+            (ngSubmit)="submit()"
+        >
+            <div class="form-group">
+                <label for="name">UserName</label>
+                <input id="name" type="text" placeholder="Enter Username" formControlName="username">
+                <div *ngIf="form.controls.username.errors?.required && form.controls.username.touched" class="text-danger">* Required</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Enter Password" formControlName="password">
+                <div *ngIf="form.controls.password.errors?.required && form.controls.password.touched" class="text-danger">* Required</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="Enter Email" formControlName="email">
+                <div *ngIf="form.controls.email.errors?.required && form.controls.email.touched" class="text-danger">* Required</div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input id="address" type="text" placeholder="Enter Address" formControlName="address">
+                <div *ngIf="form.controls.address.errors?.required && form.controls.address.touched" class="text-danger">* Required</div>
+            </div>
+            <button [disabled]="!form.valid" type="submit" class="btn bg-success" style="color: white;">Submit</button>
+        </form>
+        <ng-template #loading>
+            Loading User...
+        </ng-template>
+
+    </div>
+    <div class="col-md-3">
+
+        <h3 class="">Delete User</h3>
+        <form [formGroup]="deleteForm" (ngSubmit)="deleteByForm()">
+            <div class="form-group">
+                <label for="delete_name">UserName</label>
+                <input id="delete_name" type="text" placeholder="Enter Username" formControlName="username">
+                <div *ngIf="deleteForm.controls.username.errors?.required && deleteForm.controls.username.touched" class="text-danger">* Required</div>
+            </div>
+            <div class="form-group">
+                <label for="delete_password">Password</label>
+                <input id="delete_password" type="password" placeholder="Enter Password" formControlName="password">
+                <div *ngIf="deleteForm.controls.password.errors?.required && deleteForm.controls.password.touched" class="text-danger">* Required</div>
+            </div>
+            <button [disabled]="!deleteForm.valid" type="submit" class="btn" style="background-color: red; color: white;">Delete User</button>
+        </form>
+
+    </div>
+</div>
+
+
+
