@@ -8,8 +8,31 @@
             <li style="display: inline;">
                 - {{ user.username }}<br><small>{{ user.email }}</small>
             </li>
-            <button (click)="edit()" type="button" class="bg-warning" style="position:absolute; right: 75px;">Edit</button>
-            <button (click)="deleteWhole()" type="button" class="bg-danger" style="position:absolute; right: 0px; color: white;">Delete</button>
+            <button (click)="edit(user)" type="button" class="bg-warning" style="position:absolute; right: 75px;">Edit</button>
+            <button (click)="deleteWhole(user)" type="button" class="bg-danger" style="position:absolute; right: 0px; color: white;">Delete</button>
+            <form 
+            [formGroup]="updateForm"
+            (ngSubmit)="update(user)"
+            *ngIf="updateFlag == true"
+        >
+                <div class="form-group">
+                    <label for="update_name">UserName</label>
+                    <input id="update_name" type="text" placeholder="Enter Username" formControlName="username">
+                </div>
+                <div class="form-group">
+                    <label for="update_password">Password</label>
+                    <input id="update_password" type="password" placeholder="Enter Password" formControlName="password">
+                </div>
+                <div class="form-group">
+                    <label for="update_email">Email</label>
+                    <input id="update_email" type="email" placeholder="Enter Email" formControlName="email">
+                </div>
+                <div class="form-group">
+                    <label for="update_address">Address</label>
+                    <input id="update_address" type="text" placeholder="Enter Address" formControlName="address">
+                </div>
+                <button type="submit" class="btn bg-success" style="color: white;">Update</button>
+            </form>
             <hr>
         </ul>
     </div>

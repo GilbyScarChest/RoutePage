@@ -14,7 +14,6 @@ import { tap } from 'rxjs/operators';
 export class HomepageComponent implements OnInit {
 
     users: User[];
-    // user: User;
 
     user: User = {
         userId: 0,
@@ -24,10 +23,13 @@ export class HomepageComponent implements OnInit {
         address: ""
     };
 
+    // userModel: Observable<User>;
+    
     form: FormGroup;
-    userModel: Observable<User>;
-
     deleteForm: FormGroup;
+    updateForm: FormGroup;
+
+    updateFlag = false;
 
     // email = new FormControl('') // demo of FormControl in Reactive Forms
 
@@ -83,17 +85,31 @@ export class HomepageComponent implements OnInit {
                 console.log("No Match Found")
                 alert("No Matching Users Found");
             }
-            // console.log(foundUser)
         }
     }
 
-    deleteWhole() {
-        
-        
+    deleteWhole(user: User) {
+        this.service.deleteUser(user).subscribe (
+            resp => console.log(resp)
+        );
     }
 
-    edit() {
-        console.log("edit");
+    update(user: User) {
+        this.service.updateUser(user).subscribe (
+            resp => console.log(resp)
+        );
+        this.updateFlag = false;
+    }
+
+    edit(user: User) {
+        this.updateFlag = true;
+        this.updateForm = this.formBuilder.group({
+            username: user.username,
+            password: user.password,
+            email: user.email,
+            address: user.address
+        });
+
     }
 
 }
