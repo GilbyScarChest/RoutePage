@@ -18,7 +18,7 @@ export class HomepageComponent implements OnInit {
 
     user: User = {
         userId: 0,
-        userName: "",
+        username: "",
         password: "",
         email: "",
         address: ""
@@ -71,10 +71,19 @@ export class HomepageComponent implements OnInit {
     deleteByForm() {
         if(this.deleteForm.valid) {
             let formValues = this.deleteForm.value
-            let foundUser = this.users.filter(({password}) => password == formValues.password)
-            // let deleteUser: User = foundUser // how do I get my Array selection down to a single instance of User??
-            // this.service.deleteUser(deleteUser)
-            console.log(foundUser)
+            let foundUser = this.users.find(x => x.username == formValues.username && x.password == formValues.password)
+            if (foundUser !== undefined) {
+
+                this.service.deleteUser(foundUser).subscribe(
+                    resp => console.log(resp)
+                );
+                console.log(formValues.username)
+            }
+            else {
+                console.log("No Match Found")
+                alert("No Matching Users Found");
+            }
+            // console.log(foundUser)
         }
     }
 
