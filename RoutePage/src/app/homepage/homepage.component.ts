@@ -100,7 +100,6 @@ export class HomepageComponent implements OnInit {
             resp => console.log(resp)
         );
         this.updateFlag = false;
-        console.log(updatedUser);
     }
 
     edit(user: User) {

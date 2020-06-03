@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-6">
+<div class="row w-100">
+    <div class="col-lg-6">
         <h3 class="m-0">User List</h3>
         <small class="mt-0">{{ users?.length || 0 }} Users</small>
         <hr>
@@ -36,7 +36,7 @@
             </form>
         </ul>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3">
 
         <!-- Email: <input type="text" [formControl]="email">
 
@@ -74,7 +74,7 @@
         </ng-template>
 
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3">
 
         <h3 class="">Delete User</h3>
         <form [formGroup]="deleteForm" (ngSubmit)="deleteByForm()">
