@@ -70,6 +70,7 @@ namespace RoutePage.Service.Controllers
                 foundUser.Email = u.Email;
                 foundUser.Address = u.Address;
                 _db.SaveChanges();
+                
                 return await Task.FromResult(Ok(foundUser));
             }
             return await Task.FromResult(BadRequest());

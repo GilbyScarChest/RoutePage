@@ -4,15 +4,16 @@
         <small class="mt-0">{{ users?.length || 0 }} Users</small>
         <hr>
 
-        <ul *ngFor="let user of users" style="display: block; position: relative;" class="container-fluid">
-            <li style="display: inline;">
+        <ul style="display: block; position: relative;" class="container-fluid">
+            <li *ngFor="let user of users" style="display: inline;">
                 - {{ user.username }}<br><small>{{ user.email }}</small>
+                <button (click)="edit(user)" type="button" class="bg-warning" style="position:absolute; right: 75px;">Edit</button>
+                <button (click)="deleteWhole(user)" type="button" class="bg-danger" style="position:absolute; right: 0px; color: white;">Delete</button>
+                <hr>
             </li>
-            <button (click)="edit(user)" type="button" class="bg-warning" style="position:absolute; right: 75px;">Edit</button>
-            <button (click)="deleteWhole(user)" type="button" class="bg-danger" style="position:absolute; right: 0px; color: white;">Delete</button>
             <form 
             [formGroup]="updateForm"
-            (ngSubmit)="update(user)"
+            (ngSubmit)="update()"
             *ngIf="updateFlag == true"
         >
                 <div class="form-group">
@@ -21,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="update_password">Password</label>
-                    <input id="update_password" type="password" placeholder="Enter Password" formControlName="password">
+                    <input id="update_password" type="text" placeholder="Enter Password" formControlName="password">
                 </div>
                 <div class="form-group">
                     <label for="update_email">Email</label>
@@ -33,7 +34,6 @@
                 </div>
                 <button type="submit" class="btn bg-success" style="color: white;">Update</button>
             </form>
-            <hr>
         </ul>
     </div>
     <div class="col-md-3">

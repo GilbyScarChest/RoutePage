@@ -94,16 +94,19 @@ export class HomepageComponent implements OnInit {
         );
     }
 
-    update(user: User) {
-        this.service.updateUser(user).subscribe (
+    update() {
+        let updatedUser = this.updateForm.value
+        this.service.updateUser(updatedUser).subscribe (
             resp => console.log(resp)
         );
         this.updateFlag = false;
+        console.log(updatedUser);
     }
 
     edit(user: User) {
         this.updateFlag = true;
         this.updateForm = this.formBuilder.group({
+            userId: user.userId,
             username: user.username,
             password: user.password,
             email: user.email,
