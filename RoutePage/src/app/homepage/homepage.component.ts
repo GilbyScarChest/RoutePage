@@ -63,8 +63,11 @@ export class HomepageComponent implements OnInit {
             console.log(this.form.value);
             this.user.userId *= 1; // making sure the UserId is an integer not a string
             this.service.postUser(this.form.value).subscribe(
-                resp => console.log(resp)
-                // () => this.refresh.emit();
+                resp => {
+                    console.log(resp);
+                    this.users.push(resp);
+                    this.form.reset();
+                }
             );
             
         }
@@ -77,7 +80,11 @@ export class HomepageComponent implements OnInit {
             if (foundUser !== undefined) {
 
                 this.service.deleteUser(foundUser).subscribe(
-                    resp => console.log(resp)
+                    resp => {
+                        console.log(resp);
+                        this.deleteForm.reset();
+                        this.users = this.users.filter(item => item != foundUser);
+                    }
                 );
                 console.log(formValues.username)
             }
@@ -90,14 +97,21 @@ export class HomepageComponent implements OnInit {
 
     deleteWhole(user: User) {
         this.service.deleteUser(user).subscribe (
-            resp => console.log(resp)
+            resp => {
+                console.log(resp);
+                this.users = this.users.filter(item => item != user);
+            }
         );
     }
 
     update() {
         let updatedUser = this.updateForm.value
         this.service.updateUser(updatedUser).subscribe (
-            resp => console.log(resp)
+            resp => {
+                console.log(resp);
+                this.users = this.users.filter(item => item.userId != resp.userId);
+                this.users.push(resp);
+            }
         );
         this.updateFlag = false;
     }
