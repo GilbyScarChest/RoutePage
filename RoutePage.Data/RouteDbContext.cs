@@ -23,6 +23,10 @@ namespace RoutePage.Data
                 Email = "johnny5@email.com",
                 Address = "123 S Main St. Springfield, OH"
             });
+
+            modelBuilder.HasSequence<int>("CommentId").StartsAt(1).IncrementsBy(1);
+            modelBuilder.Entity<Comment>(o => o.HasKey(k => k.CommentId));
+            modelBuilder.Entity<Comment>().Property(p => p.CommentId).HasDefaultValueSql("nextval('\"CommentId\"')");
         }
 
         
