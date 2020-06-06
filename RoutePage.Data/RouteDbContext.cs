@@ -4,6 +4,7 @@ namespace RoutePage.Data
     public class RouteDbContext : DbContext
     {
         public DbSet<User> Users { set; get; }
+        public DbSet<Comment> Comments { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("server=localhost; database=postgres; user id=postgres; password=postgres");
